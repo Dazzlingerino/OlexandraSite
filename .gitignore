@@ -2,3 +2,10 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Source assets (keep locally, not in repo — use assets/img/ for the site)
+my_photos/
+documents/
+my_feedbacks/
+examples/
+*.docx
