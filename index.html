@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Олександра Кривонос — практикуючий психолог, магістр психології. Позитивна психотерапія, консультування та терапія онлайн.">
+  <title>Олександра Кривонос — психолог</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Social links — replace placeholders when ready -->
+  <template id="social-links-config">
+    <!-- Telegram (active) -->
+    <!-- https://t.me/sasha_krvns -->
+    <!-- Instagram placeholder -->
+    <!-- https://instagram.com/YOUR_USERNAME -->
+    <!-- TikTok placeholder -->
+    <!-- https://tiktok.com/@YOUR_USERNAME -->
+    <!-- Threads placeholder -->
+    <!-- https://threads.net/@YOUR_USERNAME -->
+  </template>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner container">
+      <a href="#about-top" class="site-header__logo" aria-label="На головну">
+        Олександра Кривонос
+      </a>
+      <div class="site-header__actions">
+        <a href="https://t.me/sasha_krvns" class="btn btn--small btn--primary site-header__cta" target="_blank" rel="noopener noreferrer">
+          Telegram
+        </a>
+        <button class="burger" id="burger-btn" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Меню</span>
+      <button class="mobile-menu__close" id="menu-close-btn" type="button" aria-label="Закрити меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-menu__list">
+      <li><a href="#about" class="mobile-menu__link">Про мене</a></li>
+      <li><a href="#requests" class="mobile-menu__link">Запити</a></li>
+      <li><a href="#services" class="mobile-menu__link">Послуги</a></li>
+      <li><a href="#education" class="mobile-menu__link">Освіта</a></li>
+      <li><a href="#reviews" class="mobile-menu__link">Відгуки</a></li>
+      <li><a href="#contacts" class="mobile-menu__link">Контакти</a></li>
+    </ul>
+    <a href="https://t.me/sasha_krvns" class="btn btn--primary mobile-menu__cta" target="_blank" rel="noopener noreferrer">
+      Записатись у Telegram
+    </a>
+    <div class="mobile-menu__socials">
+      <a href="https://t.me/sasha_krvns" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+        </svg>
+      </a>
+      <a href="https://instagram.com/" class="social-icon social-icon--placeholder" target="_blank" rel="noopener noreferrer" aria-label="Instagram (посилання буде додано)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+      </a>
+      <a href="https://tiktok.com/" class="social-icon social-icon--placeholder" target="_blank" rel="noopener noreferrer" aria-label="TikTok (посилання буде додано)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13.4a8.28 8.28 0 005.58 2.18V12.1a4.85 4.85 0 01-3.77-1.75V6.69h3.45V6.69z"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+  <main>
+  <!-- Hero -->
+  <section class="hero" id="about-top">
+    <div class="hero__image-wrap">
+      <img src="assets/img/hero.jpg" alt="Олександра Кривонос — практикуючий психолог" class="hero__image" width="1600" height="2000" fetchpriority="high">
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__content container">
+        <p class="hero__label">Практикуючий психолог · 7+ років · метод ППТ</p>
+        <h1 class="hero__title">Олександра<br>Кривонос</h1>
+        <p class="hero__subtitle">Простір для важливих змін</p>
+        <a href="https://t.me/sasha_krvns" class="btn btn--primary btn--large hero__cta" target="_blank" rel="noopener noreferrer">
+          Звʼязатися в Telegram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section--about reveal" id="about">
+    <div class="container">
+      <p class="section__label">/ Про мене /</p>
+      <h2 class="section__title">Вітаю!</h2>
+      <div class="about__grid">
+        <div class="about__text">
+          <p>Мене звати <strong>Олександра Кривонос</strong>. Я практикуючий психолог з досвідом понад 7 років, магістр психології, ведуча та автор тренінгів, майстер-класів і вебінарів, тренер з ментального здоровʼя.</p>
+          <p>Працюю у методі <strong>позитивної психотерапії</strong> — доказовими інструментами, дбайливо та конфіденційно, забезпечуючи безпечне середовище.</p>
+          <p class="about__quote">Ми зцілюємося об контакт — але не будь-який, а той, у якому є безпека, прийняття і можливість бути собою без страху бути зруйнованим або відкинутим. Робота зі мною саме така.</p>
+        </div>
+        <div class="about__image-wrap" id="about-image-wrap">
+          <div class="about__gradient" aria-hidden="true"></div>
+          <img src="assets/img/about.jpg" alt="Олександра Кривонос у розслабленій атмосфері" class="about__image" width="1600" height="2000" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requests -->
+  <section class="section section--requests reveal" id="requests">
+    <div class="container">
+      <p class="section__label">/ Запити /</p>
+      <h2 class="section__title">З чим я працюю</h2>
+      <p class="section__lead">Кожен запит унікальний. Ось теми, з якими звертаються найчастіше:</p>
+      <ul class="chips" role="list">
+        <li class="chips__item">самооцінка, сором, внутрішній критик</li>
+        <li class="chips__item">перфекціонізм, контроль</li>
+        <li class="chips__item">тривожні стани, панічна симптоматика</li>
+        <li class="chips__item">психосоматика</li>
+        <li class="chips__item">невростенія</li>
+        <li class="chips__item">депресивні стани, апатія</li>
+        <li class="chips__item">втрата сенсів, кризи</li>
+        <li class="chips__item">порушення харчової поведінки</li>
+        <li class="chips__item">наслідки психотравматичного досвіду</li>
+        <li class="chips__item">труднощі емоційної регуляції</li>
+        <li class="chips__item">стосунки, співзалежність, сепарація</li>
+        <li class="chips__item">професійне вигорання</li>
+        <li class="chips__item">еміграція</li>
+        <li class="chips__item">психологічна гігієна та саморегуляція</li>
+        <li class="chips__item">профілактика кризових станів</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--services reveal" id="services">
+    <div class="container">
+      <p class="section__label">/ Послуги /</p>
+      <h2 class="section__title">Інвестуйте у свій добробут</h2>
+      <div class="services__grid">
+
+        <article class="service-card">
+          <h3 class="service-card__title">Психологічне консультування, терапія</h3>
+          <p class="service-card__desc">Короткотривала або довготривала робота (від 2–3 місяців і більше). Глибинна терапія для вирішення конкретних питань та труднощів.</p>
+          <ul class="service-card__features" role="list">
+            <li>Терапевтичні техніки</li>
+            <li>Емоційна підтримка</li>
+            <li>Практичні вправи</li>
+            <li>Тривалість сесії 50–60 хв</li>
+            <li>1 раз на тиждень</li>
+          </ul>
+          <p class="service-card__price">1 500 грн</p>
+          <a href="https://t.me/sasha_krvns" class="btn btn--primary service-card__cta" target="_blank" rel="noopener noreferrer">Записатись</a>
+        </article>
+
+        <article class="service-card service-card--featured">
+          <h3 class="service-card__title">Разова сесія</h3>
+          <p class="service-card__desc">Індивідуальна допомога та підтримка за одну зустріч (2 години).</p>
+          <ul class="service-card__features" role="list">
+            <li>Формування запиту</li>
+            <li>Робота із актуальним запитом</li>
+            <li>Пошук та активація ресурсу</li>
+            <li>Розширення цілей</li>
+            <li>Інструменти для само-стабілізації</li>
+          </ul>
+          <p class="service-card__price">3 000 грн</p>
+          <a href="https://t.me/sasha_krvns" class="btn btn--primary service-card__cta" target="_blank" rel="noopener noreferrer">Записатись</a>
+        </article>
+
+        <article class="service-card">
+          <h3 class="service-card__title">Тренінги, майстер-класи, вебінари</h3>
+          <p class="service-card__desc">Розробка та проведення під індивідуальний запит. Підходить для малих та великих груп, корпоративних середовищ.</p>
+          <ul class="service-card__features" role="list">
+            <li>Стрес та вигорання</li>
+            <li>Тривожність, самооцінка</li>
+            <li>Психологічна гігієна</li>
+            <li>Профілактика кризових станів</li>
+            <li>+ індивідуальний запит</li>
+          </ul>
+          <p class="service-card__price">150–200 $</p>
+          <a href="https://t.me/sasha_krvns" class="btn btn--primary service-card__cta" target="_blank" rel="noopener noreferrer">Записатись</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section section--education reveal" id="education">
+    <div class="container">
+      <p class="section__label">/ Освіта /</p>
+      <h2 class="section__title">Освіта та сертифікати</h2>
+      <ul class="education__list" role="list">
+        <li>Національний педагогічний університет ім. М.П. Драгоманова, 2017–2023 — дві вищі освіти за спеціальністю «Психологія», освітня програма «Психологія консультування»</li>
+        <li>Базовий курс позитивної психотерапії, 2022–2023 — сертифікат базового консультанта ППТ (WAPP)</li>
+        <li>Курс пропедевтики психіатрії — 156 годин</li>
+        <li>Майстер-курс (психотерапевт у ППТ), 2024 — до сьогодні</li>
+        <li>Навчальний курс «Practice Basic 2.0»</li>
+        <li>Наставництво «Practice Pro»</li>
+        <li>Майстер-клас «Діагностика типу особистості клієнта у психотерапії» — 32 години</li>
+        <li>Майстер-клас «Запитання для пошуку рішень в консультуванні та психотерапії»</li>
+        <li>«Злоякісний нарцисизм» — Ненсі Маквільямс</li>
+        <li>Курс з діагностики розладів харчової поведінки</li>
+        <li>Семінар «Основи травма-терапії. Теорія та практика стабілізації»</li>
+      </ul>
+
+      <div class="carousel" data-carousel="education" aria-label="Карусель сертифікатів">
+        <div class="carousel__controls">
+          <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Попередній сертифікат">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="carousel__hint">листай</span>
+          <button class="carousel__btn carousel__btn--next" type="button" aria-label="Наступний сертифікат">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="carousel__track" tabindex="0" role="region" aria-roledescription="carousel">
+          <div class="carousel__slide">
+            <img src="assets/img/edu-1.jpg" alt="Диплом бакалавра — психологія" loading="lazy" width="1200" height="1600">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/edu-2.jpg" alt="Диплом магістра — психологія" loading="lazy" width="1200" height="1600">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/edu-3.jpg" alt="Сертифікат — пропедевтика психіатрії" loading="lazy" width="1200" height="1600">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/edu-4.jpg" alt="Сертифікат — терапевтичний метод ППТ" loading="lazy" width="1200" height="1600">
+          </div>
+        </div>
+        <div class="carousel__dots" role="tablist" aria-label="Навігація по сертифікатах"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section section--reviews reveal" id="reviews">
+    <div class="container">
+      <p class="section__label">/ Відгуки /</p>
+      <h2 class="section__title">Краще за мене скажуть мої клієнти</h2>
+
+      <div class="carousel" data-carousel="reviews" aria-label="Карусель відгуків">
+        <div class="carousel__controls">
+          <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Попередній відгук">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="carousel__hint">листай</span>
+          <button class="carousel__btn carousel__btn--next" type="button" aria-label="Наступний відгук">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="carousel__track" tabindex="0" role="region" aria-roledescription="carousel">
+          <div class="carousel__slide">
+            <img src="assets/img/review-1.jpg" alt="Відгук клієнта 1" loading="lazy" width="800" height="1200">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/review-2.jpg" alt="Відгук клієнта 2" loading="lazy" width="800" height="1200">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/review-3.jpg" alt="Відгук клієнта 3" loading="lazy" width="800" height="1200">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/review-4.jpg" alt="Відгук клієнта 4" loading="lazy" width="800" height="1200">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/review-5.jpg" alt="Відгук клієнта 5" loading="lazy" width="800" height="1200">
+          </div>
+          <div class="carousel__slide">
+            <img src="assets/img/review-6.jpg" alt="Відгук клієнта 6" loading="lazy" width="800" height="1200">
+          </div>
+        </div>
+        <div class="carousel__dots" role="tablist" aria-label="Навігація по відгуках"></div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="contacts">
+    <div class="container">
+      <blockquote class="footer__quote">
+        <p>Зміни починаються з маленьких кроків до себе справжнього.</p>
+      </blockquote>
+
+      <p class="footer__invite">Якщо маєш питання — пиши у Telegram. Запрошую тебе у роботу.</p>
+
+      <a href="https://t.me/sasha_krvns" class="btn btn--primary btn--large footer__cta" target="_blank" rel="noopener noreferrer">
+        @sasha_krvns
+      </a>
+
+      <div class="footer__socials">
+        <a href="https://t.me/sasha_krvns" class="social-icon social-icon--light" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/" class="social-icon social-icon--light social-icon--placeholder" target="_blank" rel="noopener noreferrer" aria-label="Instagram (посилання буде додано)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
+        <a href="https://tiktok.com/" class="social-icon social-icon--light social-icon--placeholder" target="_blank" rel="noopener noreferrer" aria-label="TikTok (посилання буде додано)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13.4a8.28 8.28 0 005.58 2.18V12.1a4.85 4.85 0 01-3.77-1.75V6.69h3.45V6.69z"/>
+          </svg>
+        </a>
+        <a href="https://threads.net/" class="social-icon social-icon--light social-icon--placeholder" target="_blank" rel="noopener noreferrer" aria-label="Threads (посилання буде додано)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.186 2.096c-2.514 0-4.53.997-5.93 2.84-1.27 1.67-1.92 3.96-1.92 6.72 0 2.76.65 5.05 1.92 6.72 1.4 1.843 3.416 2.84 5.93 2.84 2.514 0 4.53-.997 5.93-2.84 1.27-1.67 1.92-3.96 1.92-6.72 0-2.76-.65-5.05-1.92-6.72-1.4-1.843-3.416-2.84-5.93-2.84zm0 2.064c1.87 0 3.28.72 4.28 2.03.95 1.24 1.43 2.97 1.43 5.27 0 2.3-.48 4.03-1.43 5.27-1 1.31-2.41 2.03-4.28 2.03-1.87 0-3.28-.72-4.28-2.03-.95-1.24-1.43-2.97-1.43-5.27 0-2.3.48-4.03 1.43-5.27 1-1.31 2.41-2.03 4.28-2.03z"/>
+          </svg>
+        </a>
+      </div>
+
+      <nav class="footer__nav" aria-label="Навігація внизу сторінки">
+        <a href="#about">Про мене</a>
+        <a href="#services">Послуги</a>
+        <a href="#education">Освіта</a>
+        <a href="#reviews">Відгуки</a>
+      </nav>
+
+      <p class="footer__copy">&copy; <span id="footer-year"></span> Олександра Кривонос. Усі права захищено.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
