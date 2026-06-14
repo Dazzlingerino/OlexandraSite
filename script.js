@@ -174,7 +174,7 @@
   }
 
   /* ------------------------------------------
-     Carousel (scroll-snap + arrows + dots)
+     Carousel (scroll-snap + synced dots)
      ------------------------------------------ */
   function initCarousel(carouselEl) {
     var track = carouselEl.querySelector('.carousel__track');
@@ -205,20 +205,26 @@
 
     var dots = dotsContainer.querySelectorAll('.carousel__dot');
 
-    function goToSlide(index) {
-      if (index < 0) index = 0;
-      if (index >= slides.length) index = slides.length - 1;
+    function getScrollLeftForSlide(slide) {
+      return slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+    }
 
-      currentIndex = index;
-      var slide = slides[index];
-      var scrollLeft = slide.offsetLeft - track.offsetLeft;
+    function getCurrentIndex() {
+      var trackCenter = track.scrollLeft + track.clientWidth / 2;
+      var closest = 0;
+      var minDist = Infinity;
 
-      track.scrollTo({
-        left: scrollLeft,
-        behavior: prefersReducedMotion ? 'auto' : 'smooth'
-      });
+      for (var i = 0; i < slides.length; i++) {
+        var slide = slides[i];
+        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        var dist = Math.abs(slideCenter - trackCenter);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      }
 
-      updateDots();
+      return closest;
     }
 
     function updateDots() {
@@ -229,20 +235,23 @@
       });
     }
 
-    function getCurrentIndexFromScroll() {
-      var trackScrollLeft = track.scrollLeft;
-      var closest = 0;
-      var closestDist = Infinity;
+    function goToSlide(index, smooth) {
+      if (index < 0 || index >= slides.length) return;
 
-      slides.forEach(function (slide, i) {
-        var dist = Math.abs(slide.offsetLeft - track.offsetLeft - trackScrollLeft);
-        if (dist < closestDist) {
-          closestDist = dist;
-          closest = i;
-        }
+      currentIndex = index;
+      track.scrollTo({
+        left: getScrollLeftForSlide(slides[index]),
+        behavior: smooth !== false && !prefersReducedMotion ? 'smooth' : 'auto'
       });
+      updateDots();
+    }
 
-      return closest;
+    function onTrackScroll() {
+      var index = getCurrentIndex();
+      if (index !== currentIndex) {
+        currentIndex = index;
+        updateDots();
+      }
     }
 
     if (prevBtn) {
@@ -257,14 +266,7 @@
       });
     }
 
-    var scrollTimeout;
-    track.addEventListener('scroll', function () {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function () {
-        currentIndex = getCurrentIndexFromScroll();
-        updateDots();
-      }, 80);
-    }, { passive: true });
+    track.addEventListener('scroll', onTrackScroll, { passive: true });
 
     track.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') {
@@ -274,6 +276,10 @@
         e.preventDefault();
         goToSlide(currentIndex + 1);
       }
+    });
+
+    window.addEventListener('resize', function () {
+      goToSlide(currentIndex, false);
     });
   }
 
