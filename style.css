@@ -61,6 +61,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: var(--header-height);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -339,6 +341,9 @@ button {
    ============================================ */
 .hero {
   padding-top: var(--header-height);
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: var(--header-height);
 }
 
 .hero__image-wrap {
@@ -415,6 +420,9 @@ button {
    ============================================ */
 .section {
   padding-block: var(--space-3xl);
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: var(--header-height);
 }
 
 .section__label {
@@ -770,6 +778,9 @@ button {
   color: var(--color-cream);
   padding-block: var(--space-3xl);
   text-align: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: var(--header-height);
 }
 
 .footer__quote {
@@ -833,6 +844,78 @@ button {
   opacity: 0.6;
 }
 
+/* Mobile menu — always visible on dark background (touch + desktop) */
+.social-icon--menu {
+  border-color: rgba(251, 248, 242, 0.55);
+  color: var(--color-cream);
+  background-color: rgba(251, 248, 242, 0.12);
+  opacity: 1;
+}
+
+.social-icon--menu svg {
+  display: block;
+  flex-shrink: 0;
+  color: var(--color-cream);
+}
+
+.social-icon--menu svg path,
+.social-icon--menu svg circle {
+  fill: var(--color-cream);
+}
+
+.social-icon--menu svg rect {
+  fill: none;
+  stroke: var(--color-cream);
+}
+
+.social-icon--menu svg circle[r="4"] {
+  fill: none;
+  stroke: var(--color-cream);
+}
+
+.social-icon--menu svg circle[r="1.5"] {
+  fill: var(--color-cream);
+  stroke: none;
+}
+
+.social-icon--menu:hover,
+.social-icon--menu:focus-visible,
+.social-icon--menu:active {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.social-icon--menu:hover svg,
+.social-icon--menu:focus-visible svg,
+.social-icon--menu:active svg {
+  color: var(--color-white);
+}
+
+.social-icon--menu:hover svg path,
+.social-icon--menu:focus-visible svg path,
+.social-icon--menu:active svg path,
+.social-icon--menu:hover svg circle,
+.social-icon--menu:focus-visible svg circle,
+.social-icon--menu:active svg circle {
+  fill: var(--color-white);
+}
+
+.social-icon--menu:hover svg rect,
+.social-icon--menu:focus-visible svg rect,
+.social-icon--menu:active svg rect,
+.social-icon--menu:hover svg circle[r="4"],
+.social-icon--menu:focus-visible svg circle[r="4"],
+.social-icon--menu:active svg circle[r="4"] {
+  stroke: var(--color-white);
+}
+
+.social-icon--menu:hover svg circle[r="1.5"],
+.social-icon--menu:focus-visible svg circle[r="1.5"],
+.social-icon--menu:active svg circle[r="1.5"] {
+  fill: var(--color-white);
+}
+
 .footer__nav {
   display: flex;
   flex-wrap: wrap;
@@ -865,6 +948,7 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   *,
