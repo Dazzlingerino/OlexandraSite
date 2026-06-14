@@ -807,7 +807,7 @@ button {
 .footer__socials {
   display: flex;
   justify-content: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   margin-bottom: var(--space-2xl);
 }
 
@@ -819,62 +819,36 @@ button {
   height: 48px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-beige);
-  color: var(--color-charcoal);
-  transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
-.social-icon:hover {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
-  color: var(--color-white);
-}
-
-.social-icon--light {
-  border-color: rgba(251, 248, 242, 0.3);
-  color: var(--color-cream);
-}
-
-.social-icon--light:hover {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
-  color: var(--color-white);
-}
-
-.social-icon--placeholder {
-  opacity: 0.6;
-}
-
-/* Mobile menu — always visible on dark background (touch + desktop) */
+/* Shared social icons — drawer & footer */
 .social-icon--menu {
-  border-color: rgba(251, 248, 242, 0.55);
-  color: var(--color-cream);
+  border: 1px solid rgba(251, 248, 242, 0.55);
   background-color: rgba(251, 248, 242, 0.12);
   opacity: 1;
 }
 
-.social-icon--menu svg {
+.social-icon--menu .social-icon__svg {
   display: block;
-  flex-shrink: 0;
-  color: var(--color-cream);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
 }
 
-.social-icon--menu svg path,
-.social-icon--menu svg circle {
-  fill: var(--color-cream);
+.social-icon--menu .social-icon__svg path {
+  fill: #FBF8F2;
 }
 
-.social-icon--menu svg rect {
+.social-icon--menu .social-icon__svg rect,
+.social-icon--menu .social-icon__svg circle[r="4"] {
   fill: none;
-  stroke: var(--color-cream);
+  stroke: #FBF8F2;
+  stroke-width: 2;
 }
 
-.social-icon--menu svg circle[r="4"] {
-  fill: none;
-  stroke: var(--color-cream);
-}
-
-.social-icon--menu svg circle[r="1.5"] {
-  fill: var(--color-cream);
+.social-icon--menu .social-icon__svg circle[r="1.5"] {
+  fill: #FBF8F2;
   stroke: none;
 }
 
@@ -883,37 +857,30 @@ button {
 .social-icon--menu:active {
   background-color: var(--color-gold);
   border-color: var(--color-gold);
-  color: var(--color-white);
 }
 
-.social-icon--menu:hover svg,
-.social-icon--menu:focus-visible svg,
-.social-icon--menu:active svg {
-  color: var(--color-white);
+.social-icon--menu:hover .social-icon__svg path,
+.social-icon--menu:focus-visible .social-icon__svg path,
+.social-icon--menu:active .social-icon__svg path,
+.social-icon--menu:hover .social-icon__svg circle[fill="#FBF8F2"],
+.social-icon--menu:focus-visible .social-icon__svg circle[fill="#FBF8F2"],
+.social-icon--menu:active .social-icon__svg circle[fill="#FBF8F2"],
+.social-icon--menu:hover .social-icon__svg circle[r="1.5"],
+.social-icon--menu:focus-visible .social-icon__svg circle[r="1.5"],
+.social-icon--menu:active .social-icon__svg circle[r="1.5"] {
+  fill: #FFFFFF;
 }
 
-.social-icon--menu:hover svg path,
-.social-icon--menu:focus-visible svg path,
-.social-icon--menu:active svg path,
-.social-icon--menu:hover svg circle,
-.social-icon--menu:focus-visible svg circle,
-.social-icon--menu:active svg circle {
-  fill: var(--color-white);
-}
-
-.social-icon--menu:hover svg rect,
-.social-icon--menu:focus-visible svg rect,
-.social-icon--menu:active svg rect,
-.social-icon--menu:hover svg circle[r="4"],
-.social-icon--menu:focus-visible svg circle[r="4"],
-.social-icon--menu:active svg circle[r="4"] {
-  stroke: var(--color-white);
-}
-
-.social-icon--menu:hover svg circle[r="1.5"],
-.social-icon--menu:focus-visible svg circle[r="1.5"],
-.social-icon--menu:active svg circle[r="1.5"] {
-  fill: var(--color-white);
+.social-icon--menu:hover .social-icon__svg rect,
+.social-icon--menu:focus-visible .social-icon__svg rect,
+.social-icon--menu:active .social-icon__svg rect,
+.social-icon--menu:hover .social-icon__svg circle[stroke="#FBF8F2"],
+.social-icon--menu:focus-visible .social-icon__svg circle[stroke="#FBF8F2"],
+.social-icon--menu:active .social-icon__svg circle[stroke="#FBF8F2"],
+.social-icon--menu:hover .social-icon__svg circle[r="4"],
+.social-icon--menu:focus-visible .social-icon__svg circle[r="4"],
+.social-icon--menu:active .social-icon__svg circle[r="4"] {
+  stroke: #FFFFFF;
 }
 
 .footer__nav {
