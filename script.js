@@ -185,44 +185,65 @@
 
     if (!track || slides.length === 0) return;
 
+    // When several slides are visible at once (e.g. 3-up on desktop), the cards
+    // near the end share the same final scroll offset — centering the very last
+    // card is impossible because there is no room left to scroll. So instead of
+    // one dot per card, we build one dot per *distinct* scroll position. This
+    // guarantees every "next" step actually moves the track and reveals new
+    // cards, and the indicator never advances past what can be shown.
+    var positions = [];
     var currentIndex = 0;
+    var dots = [];
 
-    slides.forEach(function (_, index) {
-      var dot = document.createElement('button');
-      dot.classList.add('carousel__dot');
-      dot.setAttribute('type', 'button');
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', 'Слайд ' + (index + 1));
-      if (index === 0) {
-        dot.classList.add('carousel__dot--active');
-        dot.setAttribute('aria-selected', 'true');
-      }
-      dot.addEventListener('click', function () {
-        goToSlide(index);
+    function getMaxScroll() {
+      return Math.max(0, track.scrollWidth - track.clientWidth);
+    }
+
+    function getCenteredScroll(slide) {
+      var target = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+      return Math.max(0, Math.min(target, getMaxScroll()));
+    }
+
+    function computePositions() {
+      positions = [];
+      slides.forEach(function (slide) {
+        var pos = getCenteredScroll(slide);
+        // Slides whose centered offset clamps to the same edge collapse onto a
+        // single position (1px tolerance absorbs sub-pixel rounding).
+        if (!positions.length || Math.abs(pos - positions[positions.length - 1]) > 1) {
+          positions.push(pos);
+        }
       });
-      dotsContainer.appendChild(dot);
-    });
+    }
 
-    var dots = dotsContainer.querySelectorAll('.carousel__dot');
-
-    function getScrollLeftForSlide(slide) {
-      return slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      positions.forEach(function (_, index) {
+        var dot = document.createElement('button');
+        dot.classList.add('carousel__dot');
+        dot.setAttribute('type', 'button');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Слайд ' + (index + 1));
+        dot.addEventListener('click', function () {
+          goToPosition(index);
+        });
+        dotsContainer.appendChild(dot);
+      });
+      dots = dotsContainer.querySelectorAll('.carousel__dot');
     }
 
     function getCurrentIndex() {
-      var trackCenter = track.scrollLeft + track.clientWidth / 2;
+      var scrollLeft = track.scrollLeft;
       var closest = 0;
       var minDist = Infinity;
 
-      for (var i = 0; i < slides.length; i++) {
-        var slide = slides[i];
-        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-        var dist = Math.abs(slideCenter - trackCenter);
+      positions.forEach(function (pos, i) {
+        var dist = Math.abs(pos - scrollLeft);
         if (dist < minDist) {
           minDist = dist;
           closest = i;
         }
-      }
+      });
 
       return closest;
     }
@@ -235,12 +256,12 @@
       });
     }
 
-    function goToSlide(index, smooth) {
-      if (index < 0 || index >= slides.length) return;
+    function goToPosition(index, smooth) {
+      if (index < 0 || index >= positions.length) return;
 
       currentIndex = index;
       track.scrollTo({
-        left: getScrollLeftForSlide(slides[index]),
+        left: positions[index],
         behavior: smooth !== false && !prefersReducedMotion ? 'smooth' : 'auto'
       });
       updateDots();
@@ -254,15 +275,24 @@
       }
     }
 
+    function rebuild() {
+      computePositions();
+      buildDots();
+      if (currentIndex >= positions.length) {
+        currentIndex = positions.length - 1;
+      }
+      updateDots();
+    }
+
     if (prevBtn) {
       prevBtn.addEventListener('click', function () {
-        goToSlide(currentIndex - 1);
+        goToPosition(currentIndex - 1);
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function () {
-        goToSlide(currentIndex + 1);
+        goToPosition(currentIndex + 1);
       });
     }
 
@@ -271,15 +301,29 @@
     track.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        goToSlide(currentIndex - 1);
+        goToPosition(currentIndex - 1);
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        goToSlide(currentIndex + 1);
+        goToPosition(currentIndex + 1);
       }
     });
 
+    rebuild();
+
+    var resizeTimer;
     window.addEventListener('resize', function () {
-      goToSlide(currentIndex, false);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        rebuild();
+        goToPosition(currentIndex, false);
+      }, 150);
+    });
+
+    // Lazy-loaded images (certificates) change slide widths after init, which
+    // shifts every scroll position — recompute once everything has settled.
+    window.addEventListener('load', function () {
+      rebuild();
+      goToPosition(currentIndex, false);
     });
   }
 

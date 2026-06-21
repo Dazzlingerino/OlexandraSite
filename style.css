@@ -427,7 +427,10 @@ button {
 .hero__badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4em;
+  width: 100%;
+  max-width: 320px;
   font-family: var(--font-hand);
   font-size: var(--text-2xl);
   font-weight: 700;
@@ -1284,6 +1287,7 @@ button {
     margin-inline: 0;
   }
 
+  .hero__badge,
   .hero__cta {
     width: auto;
   }
