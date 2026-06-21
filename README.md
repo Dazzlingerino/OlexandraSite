@@ -33,22 +33,29 @@ python3 -m http.server 8080
 3. У Settings → Pages → Source: **Deploy from branch** → `main` → `/ (root)`
 4. Сайт буде доступний за адресою `https://YOUR_USERNAME.github.io/YOUR_REPO/`
 
-## Заміна посилань на соцмережі
+## Посилання на соцмережі (активні)
 
-У `index.html` знайдіть плейсхолдери (клас `social-icon--placeholder`) та замініть `href`:
-
-- Instagram: `https://instagram.com/YOUR_USERNAME`
-- TikTok: `https://tiktok.com/@YOUR_USERNAME`
-- Threads: `https://threads.net/@YOUR_USERNAME`
-
-Telegram вже активний: `https://t.me/sasha_krvns`
+- Telegram: `https://t.me/sasha_krvns`
+- Instagram: `https://www.instagram.com/sasha_krvns`
+- TikTok: `https://www.tiktok.com/@sasha_krvns`
 
 ## Заміна фото
 
-Оригінали зберігаються в `my_photos/`, `documents/`, `my_feedbacks/`.
+Оригінали зберігаються в `my_photos/`, `documents/`, `my_feedbacks/` (не потрапляють у репозиторій — див. `.gitignore`).
 Веб-копії — в `assets/img/`. Щоб оновити:
 
 ```bash
-sips -Z 1600 my_photos/3.jpeg --out assets/img/hero.jpg
-sips -Z 1600 my_photos/2.jpeg --out assets/img/about.jpg
+# Три фото експертки
+sips -Z 1600 my_photos/3.jpeg --out assets/img/hero.jpg     # шапка / Hero
+sips -Z 1600 my_photos/2.jpeg --out assets/img/about.jpg    # блок «Про мене» (друге фото, fade-in)
+sips -Z 1200 my_photos/4.jpeg --out assets/img/footer.jpg   # підвал (третє фото)
+
+# 10 сертифікатів каруселі (edu-1 … edu-10)
+sips -Z 1300 "documents/<файл>.jpeg" --out assets/img/edu-1.jpg
 ```
+
+## Відгуки
+
+Відгуки оформлені як текстові картки (карусель) з нейтральними емодзі-аватарами —
+без імен та фото клієнтів задля конфіденційності. Текст редагується безпосередньо
+в `index.html` у блоці `#reviews`.

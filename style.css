@@ -2,9 +2,14 @@
    Design tokens
    ============================================ */
 :root {
-  --color-gold: #D4A537;
-  --color-gold-dark: #B88E2A;
-  --color-gold-bg: #F0E4BC;
+  /* Warm amber/terracotta accent (replaces the previous mustard yellow) */
+  --color-gold: #D97E2B;
+  --color-gold-dark: #B8641C;
+  --color-gold-bg: #F7E6CC;
+  --color-gold-rgb: 217, 126, 43;
+  /* Soft pastel-lemon marker for handwritten highlights */
+  --color-highlight: #FCEFA8;
+  --color-highlight-strong: rgba(252, 224, 120, 0.9);
   --color-cream: #FBF8F2;
   --color-beige: #CFC7BC;
   --color-beige-light: #E8E2D8;
@@ -15,6 +20,7 @@
 
   --font-heading: 'Montserrat', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Marck Script', 'Segoe Script', cursive;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -410,11 +416,35 @@ button {
 }
 
 .hero__subtitle {
-  font-family: var(--font-heading);
   font-size: var(--text-lg);
-  font-weight: 500;
-  opacity: 0.9;
+  font-weight: 400;
+  opacity: 0.92;
+  margin-bottom: var(--space-md);
+  max-width: 38ch;
+  margin-inline: auto;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-hand);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-white);
+  padding: 0.2em 0.85em 0.3em;
   margin-bottom: var(--space-xl);
+  border: 1.5px solid rgba(251, 248, 242, 0.65);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(2px);
+}
+
+.hero__badge::before {
+  content: '✺';
+  font-family: var(--font-body);
+  font-size: 0.7em;
+  color: var(--color-gold);
 }
 
 .hero__cta {
@@ -455,6 +485,55 @@ button {
   color: var(--color-charcoal-light);
   margin-bottom: var(--space-xl);
   max-width: 60ch;
+}
+
+/* ============================================
+   Handwritten accents + soft marker highlight
+   ============================================ */
+.handwritten {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Script fonts read smaller — bump titles set in handwriting */
+.section__title.handwritten,
+.handwritten--title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: calc(var(--text-2xl) * 1.6);
+  line-height: 1.02;
+  color: var(--color-charcoal);
+}
+
+/* Pinpoint word accent: handwriting + thin soft-yellow marker.
+   Text colour stays charcoal so contrast remains 100%. */
+.highlight-handwritten {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.18em;
+  color: var(--color-charcoal);
+  padding: 0 0.14em;
+  border-radius: 7px 5px 8px 4px;
+  background-image: linear-gradient(
+    102deg,
+    rgba(252, 224, 120, 0) 0.5%,
+    var(--color-highlight) 4%,
+    var(--color-highlight-strong) 48%,
+    var(--color-highlight) 95%,
+    rgba(252, 224, 120, 0) 99.5%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 64%;
+  background-position: 0 80%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* When a marker accent sits inside a handwritten title, keep size in step */
+.handwritten--title .highlight-handwritten,
+.section__title.handwritten .highlight-handwritten {
+  font-size: 1em;
 }
 
 /* Reveal animation */
@@ -501,6 +580,57 @@ button {
   color: var(--color-charcoal);
 }
 
+.about__greeting {
+  font-family: var(--font-hand);
+  font-size: calc(var(--text-2xl) * 1.5);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-gold-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.about__closing {
+  margin-top: var(--space-md);
+  font-weight: 500;
+  color: var(--color-charcoal);
+}
+
+/* Ultra-compact "in numbers" strip — small pills, 1–2 lines on mobile */
+.stats__label {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-beige);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.stats__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  padding: 0.3rem 0.7rem;
+  font-size: var(--text-xs);
+  color: var(--color-charcoal-light);
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-beige-light);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.stats__num {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-gold-dark);
+}
+
 .about__image-wrap {
   position: relative;
   border-radius: var(--radius-lg);
@@ -526,10 +656,10 @@ button {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(212, 165, 55, 0.35) 0%,
+    rgba(217, 126, 43, 0.35) 0%,
     rgba(207, 199, 188, 0.25) 25%,
     rgba(251, 248, 242, 0.15) 50%,
-    rgba(212, 165, 55, 0.2) 75%,
+    rgba(217, 126, 43, 0.2) 75%,
     rgba(207, 199, 188, 0.3) 100%
   );
   background-size: 300% 300%;
@@ -585,7 +715,7 @@ button {
 
 .chips__item:hover {
   border-color: var(--color-gold);
-  background-color: rgba(212, 165, 55, 0.08);
+  background-color: rgba(var(--color-gold-rgb), 0.1);
 }
 
 /* ============================================
@@ -635,10 +765,34 @@ button {
   margin-bottom: var(--space-sm);
 }
 
+.service-card__meta {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 0.4em;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-gold-dark);
+  background-color: var(--color-gold-bg);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+
 .service-card__desc {
   font-size: var(--text-sm);
   color: var(--color-charcoal-light);
   margin-bottom: var(--space-md);
+}
+
+.service-card__fits {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-sm);
 }
 
 .service-card__features {
@@ -668,11 +822,28 @@ button {
 }
 
 .service-card__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-beige-light);
+  margin-bottom: var(--space-md);
+}
+
+.service-card__price-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-charcoal-light);
+}
+
+.service-card__price-value {
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--color-charcoal);
-  margin-bottom: var(--space-md);
 }
 
 .service-card__cta {
@@ -701,6 +872,37 @@ button {
   position: absolute;
   left: 0;
   color: var(--color-gold);
+}
+
+.education__soon {
+  display: inline-block;
+  margin-left: 0.45em;
+  padding: 0.05em 0.55em;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-gold);
+  border-radius: var(--radius-full);
+  vertical-align: middle;
+}
+
+.education__list strong {
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+
+/* Certificate carousel — uniform height for mixed orientations */
+.section--education .carousel__slide {
+  background-color: var(--color-white);
+}
+
+.section--education .carousel__slide img {
+  height: 300px;
+  object-fit: contain;
+  background-color: var(--color-white);
 }
 
 /* ============================================
@@ -802,6 +1004,69 @@ button {
   background-color: var(--color-white);
 }
 
+.section--reviews .section__lead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.section--reviews .carousel__slide {
+  flex: 0 0 88%;
+  box-shadow: none;
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  align-self: stretch;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  margin: 0;
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-beige-light);
+  border-radius: var(--radius-lg);
+}
+
+.review-card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  line-height: 1;
+  background-color: var(--color-gold-bg);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.review-card__text {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-charcoal);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.review-card__author {
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  color: var(--color-charcoal-light);
+}
+
+.review-card__author::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  background-color: var(--color-gold);
+}
+
 /* ============================================
    Footer
    ============================================ */
@@ -813,6 +1078,23 @@ button {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   scroll-margin-top: var(--header-height);
+}
+
+.footer__photo {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto var(--space-lg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 3px solid rgba(217, 126, 43, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.footer__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
 }
 
 .footer__quote {
@@ -827,9 +1109,16 @@ button {
 }
 
 .footer__invite {
-  font-size: var(--text-base);
-  opacity: 0.85;
-  margin-bottom: var(--space-lg);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  opacity: 0.95;
+  max-width: 30ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+.footer__heart {
+  font-size: 1.1em;
 }
 
 .footer__cta {
@@ -988,7 +1277,11 @@ button {
 
   .hero__content {
     text-align: left;
-    max-width: 560px;
+    max-width: 600px;
+  }
+
+  .hero__subtitle {
+    margin-inline: 0;
   }
 
   .hero__cta {
@@ -997,6 +1290,11 @@ button {
 
   .section__title {
     font-size: var(--text-3xl);
+  }
+
+  .section__title.handwritten,
+  .handwritten--title {
+    font-size: calc(var(--text-3xl) * 1.55);
   }
 
   .about__grid {
@@ -1010,6 +1308,14 @@ button {
 
   .carousel__slide {
     flex: 0 0 60%;
+  }
+
+  .section--reviews .carousel__slide {
+    flex: 0 0 46%;
+  }
+
+  .section--education .carousel__slide img {
+    height: 380px;
   }
 }
 
@@ -1070,5 +1376,13 @@ button {
 
   .carousel__slide {
     flex: 0 0 45%;
+  }
+
+  .section--reviews .carousel__slide {
+    flex: 0 0 32%;
+  }
+
+  .section--education .carousel__slide img {
+    height: 460px;
   }
 }
