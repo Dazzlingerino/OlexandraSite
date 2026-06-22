@@ -1348,6 +1348,10 @@ button {
     min-height: 90vh;
   }
 
+  .hero__image {
+    object-position: center 25%;
+  }
+
   .hero__title {
     font-size: 3.5rem;
   }
