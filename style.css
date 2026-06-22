@@ -332,12 +332,12 @@ button {
 .mobile-menu__cta {
   width: 100%;
   margin-bottom: var(--space-xl);
-  margin-left: var(--space-md);
 }
 
 .mobile-menu__socials {
   display: flex;
-  gap: var(--space-md);
+  justify-content: center;
+  gap: var(--space-xl);
 }
 
 .menu-overlay {
