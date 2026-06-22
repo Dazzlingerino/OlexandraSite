@@ -4,6 +4,7 @@ Thumbs.db
 node_modules/
 
 # Source assets (keep locally, not in repo — use assets/img/ for the site)
+assets/img/_originals/
 my_photos/
 documents/
 my_feedbacks/

@@ -1,0 +1,12 @@
+{
+  "name": "olexandra-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Лендінг психолога Олександри Кривонос",
+  "scripts": {
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

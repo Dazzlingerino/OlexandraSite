@@ -93,6 +93,12 @@ img {
   height: auto;
 }
 
+/* <picture> — лише обгортка для адаптивних srcset; не повинна впливати на
+   верстку, тож «розчиняємо» її, щоб <img> поводився як прямий нащадок батька. */
+picture {
+  display: contents;
+}
+
 a {
   color: inherit;
   text-decoration: none;
