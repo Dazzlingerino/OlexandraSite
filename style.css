@@ -71,6 +71,11 @@ html {
   scroll-snap-type: y proximity;
   scroll-padding-top: var(--header-height);
   -webkit-text-size-adjust: 100%;
+  /* iOS: rubber-band overscroll exposes the area behind <body>. Without a
+     matching background here it appears as an empty (white) gap above the
+     fixed header while scrolling. */
+  background-color: var(--color-cream);
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -157,7 +162,7 @@ button {
 }
 
 .btn--large {
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   font-size: var(--text-base);
 }
 
@@ -327,6 +332,7 @@ button {
 .mobile-menu__cta {
   width: 100%;
   margin-bottom: var(--space-xl);
+  margin-left: var(--space-md);
 }
 
 .mobile-menu__socials {
@@ -897,15 +903,27 @@ button {
   font-weight: 600;
 }
 
-/* Certificate carousel — uniform height for mixed orientations */
+/* Certificate carousel — passe-partout matting for mixed orientations.
+   The slide is a soft cream mat; the certificate sits on it with its own
+   edge + shadow, so even white documents read as a framed print. */
 .section--education .carousel__slide {
-  background-color: var(--color-white);
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section--education .carousel__slide img {
-  height: 300px;
-  object-fit: contain;
-  background-color: var(--color-white);
+  /* Scale to a uniform target height but let width win on narrow screens, so
+     the image always keeps its real aspect ratio — no object-fit letterboxing. */
+  max-height: 300px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--color-beige-light);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ============================================
@@ -948,6 +966,7 @@ button {
 }
 
 .carousel__track {
+  position: relative;
   display: flex;
   gap: var(--space-md);
   overflow-x: auto;
@@ -956,6 +975,10 @@ button {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-block: var(--space-sm);
+  /* Full-bleed: break out of the container so slides reach the screen edges */
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--space-lg);
+  scroll-padding-inline: var(--space-lg);
 }
 
 .carousel__track::-webkit-scrollbar {
@@ -1270,7 +1293,7 @@ button {
   }
 
   .section--education .carousel__slide img {
-    height: 380px;
+    max-height: 380px;
   }
 }
 
@@ -1338,6 +1361,6 @@ button {
   }
 
   .section--education .carousel__slide img {
-    height: 460px;
+    max-height: 460px;
   }
 }
